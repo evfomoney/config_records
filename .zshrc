@@ -36,7 +36,7 @@ fi
 
 # | -------------------- autocmd --------------------------|
 
-# for vmware-tools ..
+# for vmware-tools .. mount disk
 echo 237297 | sudo -S /usr/bin/vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other; clear;
 
 
@@ -73,7 +73,8 @@ sc()
 }
 
 
-# for proxy( WARNING:所用的是clash_for_linux)
+# for proxy
+# ( WARNING:所用的是clash_for_linux)
 on_proxy() {
   sudo /home/evfomoney/Downloads/clash-for-linux/start.sh
   source /etc/profile.d/clash.sh
@@ -84,7 +85,29 @@ off_proxy(){
   proxy_off
 }
 
-
+# for wsl(just the env is ok)
+on_proxy2() {
+  export http_proxy=socks5://${hostip}:7890
+  export https_proxy=socks5://${hostip}:7890
+  export all_proxy=socks5://${hostip}:7890
+  export no_proxy=socks5://${hostip}:7890
+  export HTTP_PROXY=socks5://${hostip}:7890
+  export HTTPS_PROXY=socks5://${hostip}:7890
+  export ALL_PROXY=socks5://${hostip}:7890
+  export NO_PROXY=socks5://${hostip}:7890
+  echo -e "proxy already on : enjoy"
+}
+off_proxy2(){
+  unset http_proxy
+  unset https_proxy
+  unset all_proxy
+  unset no_proxy
+  unset HTTP_PROXY
+  unset HTTPS_PROXY
+  unset ALL_PROXY
+  unset NO_PROXY
+  echo -e "proxy already off : byebye"
+}
 # | --------------------  PATH  --------------------------|
 
 # for notebook
